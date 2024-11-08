@@ -1,0 +1,43 @@
+@startuml
+class Company {
+- String name
++ <<Create>> Company()
++ <<Create>> Company(String)
++ String getName()
++ void setName(String)
++ int getNumberOfEmployees()
+# void hire(Contract)
+# void dismiss(Contract)
++ void hire(Person,double)
++ void dismiss(Person)
++ boolean employed(Person)
++ double payroll()
+}
+class Contract {
+- double salary
++ <<Create>> Contract(Company,Person,double)
++ Company getCompany()
++ Person getPerson()
++ double getSalary()
+}
+class Person {
+- String name
+- String surname
++ <<Create>> Person()
++ <<Create>> Person(String,String)
++ <<Create>> Person(String,String,double,Company)
++ String getName()
++ void setName(String)
++ String getSurname()
++ void setSurname(String)
++ double getSalary()
++ Company getCompany()
+# void selfHire(Contract)
++ void selfHire(Company,double)
+# void selfDismiss(Contract)
++ void selfDismiss(Company)
+}
+
+Company -- Contract
+Person -- Contract
+@enduml
