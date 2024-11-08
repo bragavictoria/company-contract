@@ -5,6 +5,11 @@ public class Person {
     private String name;
     private String surname;
     private double salary;
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
     private Contract contract;
 
     public Person() {
@@ -88,6 +93,7 @@ public class Person {
 
     public void selfDismiss(Company company) {
             if (contract != null && contract.getCompany() == company) {
+                company.getContracts().remove(contract);
                 this.contract = null;
                 this.salary = 0.0;
             }
@@ -111,7 +117,7 @@ public class Person {
     }
 
     public void setSalary(double salary) {
-
+        this.salary = salary;
     }
 
     public void setCompany(Company company) {

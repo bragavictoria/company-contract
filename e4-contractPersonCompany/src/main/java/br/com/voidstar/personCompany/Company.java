@@ -27,6 +27,10 @@ public class Company {
         this.name = name;
     }
 
+    public Set<Contract> getContracts() {
+        return contracts;
+    }
+
     public int getNumberOfEmployees() {
         return contracts.size();
     }
@@ -41,7 +45,7 @@ public class Company {
     }
 
     public void hire(Person person, double salary) {
-        if (person != null && salary > 0) {
+        if (person != null && salary > 0 && person.getCompany() != this) {
             if (person.getCompany() != null && person.getCompany() != this) {
                 person.getCompany().dismiss(person);
             }
@@ -49,6 +53,7 @@ public class Company {
             contracts.add(newContract);
             person.setSalary(salary);
             person.setCompany(this);
+            person.setContract(newContract);
             }
 
             if (!contracts.contains(person)){
@@ -72,7 +77,7 @@ public class Company {
     }
 
     public Contract findContract(Person person) {
-        if (person != null && person.getContract() != null){
+        if (person != null && person.getContract() != null && person.getCompany() == this){
             return person.getContract();
         }
         return null;
